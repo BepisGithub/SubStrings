@@ -1,3 +1,4 @@
+require "pry"
 dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
 def substrings(str,arr)
     str.downcase!
@@ -6,16 +7,25 @@ def substrings(str,arr)
     # end
 
     arr.reduce(Hash.new(0)) do |hash,word|
-        if str.include?(word)
-            hash[word] += 1
+        str_copy = str
+        if str_copy.include?(word)
+            while str_copy.include?(word)
+                str_copy = str_copy.sub(word,"")
+                hash[word] += 1
+            end
             hash
         else
             hash
         end
     end
 
+
+    # arr.reduce(Hash.new(0)) do |hash,word|
+    #     str.count
+    # end
+
     
 
 end
 
-substrings("Below the ocean",dictionary)
+p substrings("Howdy partner, sit down! How's it going?",dictionary)
